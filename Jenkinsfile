@@ -2,27 +2,25 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_REPO = 'faizrazadec/translator'
+        DOCKER_REPO = 'abdullah4665/translator'
         VERSION = "0.0.${BUILD_NUMBER}"
-        GIT_BRANCH = 'main'
+        GIT_BRANCH = 'master'
     }
 
     stages {
         stage('Checkout Code') {
             steps {
                 echo 'Pulling code from Git repository...'
-                git branch: "${GIT_BRANCH}", url: 'https://github.com/faizrazadec/Healthcare_Translation_Web_App_with_Generative_AI.git'
+                git branch: "${GIT_BRANCH}", url: 'https://github.com/AbdullahSoftech/flask_web_app.git'
             }
         }
 
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image...'
-                dir('flask_web_app') {
-                    sh """
-                    docker build -t ${DOCKER_REPO}:${VERSION} .
-                    """
-                }
+                sh """
+                docker build -t ${DOCKER_REPO}:${VERSION} .
+                """
             }
         }
 
@@ -46,7 +44,7 @@ pipeline {
                     git config --global user.name "$GITHUB_USERNAME"
                     git config --global user.email "$GITHUB_USERNAME@gmail.com"
                     git tag v${VERSION}
-                    git push https://$GITHUB_USERNAME:$GITHUB_TOKEN@github.com/faizrazadec/Healthcare_Translation_Web_App_with_Generative_AI.git v${VERSION}
+                    git push https://$GITHUB_USERNAME:$GITHUB_TOKEN@github.com/AbdullahSoftech/flask_web_app.git v${VERSION}
                     """
                 }
             }
