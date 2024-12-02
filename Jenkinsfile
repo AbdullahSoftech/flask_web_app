@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_REPO = 'abdullah4665/ml-model'
+        DOCKER_REPO = 'abdullah4665/ml-project'
         VERSION = "0.0.${BUILD_NUMBER}"
         GIT_BRANCH = 'master'
     }
